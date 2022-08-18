@@ -4,6 +4,7 @@ import { Text, View, Image, StyleSheet, Dimensions, ScrollView } from 'react-nat
 import { IMovie } from '../interfaces/movieInterface';
 import { RootStackParams } from '../navigation/Navigation';
 import Icon from "react-native-vector-icons/Ionicons";
+import { useMovieDetails } from '../hooks/useMovieDetails';
 
 const screenHeight = Dimensions.get("screen").height;
 
@@ -13,6 +14,8 @@ export const DetailsScreen = ({route}: IProps) => {
 
   const movie = route.params as IMovie;
   const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
+  const { isLoading, movieFull, cast } = useMovieDetails(movie.id);
 
   return (
     <ScrollView>
