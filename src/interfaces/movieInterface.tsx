@@ -32,5 +32,6 @@ export interface IMovie {
 
 export enum OriginalLanguage {
     En = "en",
+    Es = "es",
     Ja = "ja",
 }

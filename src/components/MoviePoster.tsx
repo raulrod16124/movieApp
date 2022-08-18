@@ -1,5 +1,6 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { IMovie } from '../interfaces/movieInterface'
 
 interface IProps {
@@ -10,10 +11,23 @@ interface IProps {
 
 export const MoviePoster = ({movie, height = 340, width = 220}:IProps) => {
 
-    const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+    const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
+    const navigation = useNavigation();
 
   return (
-    <View style={{width, height, marginHorizontal: 10}} >
+    <TouchableOpacity 
+        // @ts-ignore
+        onPress={()=>navigation.navigate("DetailsScreen", movie)}
+        activeOpacity={0.8}
+        style={{
+            width, 
+            height, 
+            marginHorizontal: 2,
+            paddingBottom: 10,
+            paddingHorizontal: 2,
+        }} 
+    >
         <View style={imageStyles.imageShadow}>
             <Image
                 source={{
@@ -22,7 +36,7 @@ export const MoviePoster = ({movie, height = 340, width = 220}:IProps) => {
                 style={imageStyles.image}
             />
         </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
@@ -33,12 +47,12 @@ const imageStyles = StyleSheet.create({
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
-            height: 10,
+            height: 2,
         },
         shadowOpacity: 0.53,
         shadowRadius: 13.97,
 
-        elevation: 21,
+        elevation: 10,
     },
     image:{
         flex: 1,
