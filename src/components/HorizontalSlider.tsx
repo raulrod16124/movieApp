@@ -11,7 +11,7 @@ interface IProps {
 export const HorizontalSlider = ({ title, movies }: IProps) => {
 
   return (
-        <View style={{height: title ? 240 : 220, marginVertical: 5}}>
+        <View style={{height: title ? 260 : 240, marginVertical: 5}}>
             {title && <Text style={styles.title}>{title}</Text>}
             <FlatList
               data={movies}

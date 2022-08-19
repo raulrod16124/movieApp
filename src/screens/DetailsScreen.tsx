@@ -1,6 +1,6 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react'
-import { Text, View, Image, StyleSheet, Dimensions, ScrollView, ActivityIndicator } from 'react-native';
+import { Text, View, Image, StyleSheet, Dimensions, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { IMovie } from '../interfaces/movieInterface';
 import { RootStackParams } from '../navigation/Navigation';
 import Icon from "react-native-vector-icons/Ionicons";
@@ -11,7 +11,7 @@ const screenHeight = Dimensions.get("screen").height;
 
 interface IProps extends StackScreenProps<RootStackParams, "DetailsScreen"> {}
 
-export const DetailsScreen = ({route}: IProps) => {
+export const DetailsScreen = ({route, navigation}: IProps) => {
 
   const movie = route.params as IMovie;
   const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
@@ -36,11 +36,26 @@ export const DetailsScreen = ({route}: IProps) => {
         ? <ActivityIndicator size={30} color="grey" style={{marginTop: 20}} />
         : <MovieDetails movieFull={movieFull} cast={cast} />
       }
+
+      {/* Back button */}
+      <TouchableOpacity style={detailsStyles.backButton} onPress={()=>navigation.pop()} >
+        <Icon color="white" name="arrow-back-outline" size={50} />
+      </TouchableOpacity>
+
     </ScrollView>
   )
 }
 
 const detailsStyles = StyleSheet.create({
+  backButton:{
+    position: "absolute",
+    top:10,
+    left:10,
+    color:"#fff",
+    borderRadius: 100,
+    backgroundColor:"grey",
+    opacity: 0.5,
+  },
   imageContainer:{
     width: "100%",
     height: screenHeight * 0.7,
