@@ -50,3 +50,7 @@ export const useMovies = () => {
 
   return {...moviesState, isLoading}
 }
+
+export const getMovieImage = ( moviePosterPath: string | null ) => {
+    return `https://image.tmdb.org/t/p/w500${moviePosterPath}`;
+}

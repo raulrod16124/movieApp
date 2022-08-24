@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { getMovieImage } from '../hooks/useMovies';
 import { IMovie } from '../interfaces/movieInterface'
 
 interface IProps {
@@ -11,7 +12,7 @@ interface IProps {
 
 export const MoviePoster = ({movie, height = 340, width = 220}:IProps) => {
 
-    const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+    const uri = getMovieImage(movie.poster_path);
 
     const navigation = useNavigation();
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
+import { getMovieImage } from '../hooks/useMovies';
 import { Cast } from '../interfaces/creditsInterface'
 
 interface IProps {
@@ -8,7 +9,8 @@ interface IProps {
 
 export const ActorItem = ({actor}:IProps) => {
 
-    const uri = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
+    const uri = getMovieImage(actor.profile_path);
+
   return (
     <View style={actorStyles.container} >
         {actor.profile_path &&

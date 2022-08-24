@@ -6,6 +6,7 @@ import { RootStackParams } from '../navigation/Navigation';
 import Icon from "react-native-vector-icons/Ionicons";
 import { useMovieDetails } from '../hooks/useMovieDetails';
 import { MovieDetails } from '../components/MovieDetails';
+import { getMovieImage } from '../hooks/useMovies';
 
 const screenHeight = Dimensions.get("screen").height;
 
@@ -14,7 +15,7 @@ interface IProps extends StackScreenProps<RootStackParams, "DetailsScreen"> {}
 export const DetailsScreen = ({route, navigation}: IProps) => {
 
   const movie = route.params as IMovie;
-  const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  const uri = getMovieImage(movie.poster_path);
 
   const { isLoading, movieFull, cast } = useMovieDetails(movie.id);
 
